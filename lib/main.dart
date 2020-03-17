@@ -75,13 +75,21 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+
+  @override
+  void dispose() {
+    _audio?.pause();
+    _audio?.dispose();
+  }
+
   void onButtonPlay() {
     _audio = Audio.load('assets/tohokami8x.m4a', playInBackground: true);
     _audio.play();
   }
 
   void onButtonPause() {
-    _audio.pause();
-    _audio.dispose();
+    _audio?.pause();
+    _audio?.dispose();
+    _audio = null;
   }
 }
