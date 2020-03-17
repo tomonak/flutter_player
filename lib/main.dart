@@ -8,11 +8,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Player',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Player'),
     );
   }
 }
@@ -28,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  Audio _audio = Audio.load('assets/tohokami8x.m4a', playInBackground: true);
+  Audio _audio;
 
   void _incrementCounter() {
     setState(() {
@@ -76,10 +76,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void onButtonPlay() {
+    _audio = Audio.load('assets/tohokami8x.m4a', playInBackground: true);
     _audio.play();
   }
 
   void onButtonPause() {
     _audio.pause();
+    _audio.dispose();
   }
 }
